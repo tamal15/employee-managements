@@ -6,106 +6,116 @@ live site link https://employee-onboardings.netlify.app/
 
 
 
-Employee Onboarding (Starter)
+## 🛠 Tech Stack
+- **Next.js (TypeScript)**
+- **React Hook Form**
+- **Zod**
+- **Tailwind CSS**
+- **shadcn/ui components
 
-Tech Stack
+---
 
-Next.js (TypeScript)
+## ▶ How to Run
+1. Install dependencies:
+   ```bash
+   npm install
+   ```
+2. Start development server:
+   ```bash
+   npm run dev
+   ```
+3. Open: [http://localhost:3000](http://localhost:3000)
 
-React Hook Form
+---
 
-Zod
+## ✅ Completed Features
 
-Tailwind CSS
+### 🔹 Multi-Step Form
+- Fully functional `MultiStepForm` orchestrator  
+- Progress bar with step count  
+- Step navigation with **Next/Back** buttons  
+- Auto-save form state in **React state**  
+- Warning for unsaved changes (`beforeunload` event)  
+- Error boundary for robust rendering  
 
-(Optional) shadcn/ui components
+---
 
-How to run
+### 🔹 Step 1: Personal Info
+- Full Name (required, ≥ 2 words)  
+- Email (required, valid email format)  
+- Phone Number (required, format: `+1-123-456-7890`)  
+- Date of Birth (≥ 18 years old)  
+- Profile Picture (optional, JPG/PNG ≤ 2MB)  
+- Validation handled with **Zod + React Hook Form**  
+- Professional UI design with animations & hover effects  
 
-npm install
-npm run dev
+---
+
+### 🔹 Step 2: Job Details
+- Department dropdown: *Engineering, Marketing, Sales, HR, Finance*  
+- Position Title (required, min 3 characters)  
+- Start Date (not in past, max 90 days in future)  
+- Job Type: Radio buttons (*Full-time, Part-time, Contract*)  
+- Salary Expectation:
+  - Full-time → Annual salary ($30,000 – $200,000)  
+  - Contract → Hourly rate ($50 – $150)  
+- Manager dropdown (filtered by department)  
+- Conditional logic for salary fields based on job type  
+- Professional UI with focus/hover effects  
+
+---
+
+### 🔹 Step 3: Skills & Preferences
+- Primary Skills (choose ≥ 3)  
+- Experience for each skill  
+- Preferred Working Hours (time range: start–end)  
+- Remote Work Preference (slider 0% → 100%)  
+- Extra Notes (optional, max 500 chars)  
+- Conditional “Manager Approved” checkbox if remote > 50%  
+
+---
+
+### 🔹 Step 4: Emergency Contact
+- Contact Name (required)  
+- Relationship (dropdown)  
+- Phone Number (required, same format as Step 1)  
+- Guardian Contact (name + phone) auto-displayed if age < 21  
+- Professional look with card-style UI & smooth transitions  
+
+---
+
+### 🔹 Step 5: Review & Submit
+- Read-only display of all collected data  
+- Confirmation checkbox: *"I confirm all information is correct"*  
+- Cannot submit unless confirmed  
+- Final data transformation applied before submission  
+- Optimistic UI: shows payload in console + alerts  
+
+---
+
+## 🧠 Smart Logic & Validation
+- Age < 21 → Guardian fields required  
+- Contract job → Hourly rate only (no annual salary)  
+- Remote > 50% → Manager approval checkbox displayed  
+- HR/Finance dept → Start date cannot fall on Friday/Saturday  
+- Manager list filtered by department  
+- Skills list filtered by department  
+- Cross-step dependencies handled using `watch()` from React Hook Form  
+
+---
+
+## 🎨 User Experience Features
+- Auto-save form state in React state  
+- Unsaved changes warning if user tries to leave  
+- Cannot advance step until current step is valid  
+- Keyboard navigation: `Enter / Shift+Enter` to move next/back  
+- Professional UI with hover/focus animations  
+- Responsive layout  
+
+---
 
 
-Open http://localhost:3000
- in your browser.
 
-What I implemented (starter)
+---
 
-Project skeleton with MultiStepForm orchestrator.
-
-Step 1: Personal Info fully implemented:
-
-fullName (minimum 2 words)
-
-email
-
-phone (format: +X-XXX-XXX-XXXX)
-
-dob (≥18 years old)
-
-profile picture (JPG/PNG ≤ 2MB)
-
-Validation integrated with Zod, connected to React Hook Form.
-
-Progress bar + step navigation.
-
-Auto-save of form state into React state (not using localStorage).
-
-Unsaved changes warning using beforeunload.
-
-Provided lib/mockData.ts for managers & skills (to use in Step 2/3).
-
-How I planned complex logic
-
-Use per-step Zod schemas with zodResolver per step to keep validation modular.
-
-Use parent MultiStepForm to manage:
-
-Current step
-
-Accumulated form state
-
-Final data transformation for submission
-
-Business logic enforced:
-
-Contract vs Full-time salary validation
-
-Manager selection filtered by department
-
-Start date restrictions for HR/Finance on weekends
-
-Guardian fields for age < 21
-
-Implementation via:
-
-Zod .refine() for strict validation (dates, weekends, salary/hourly rules)
-
-Conditional rendering (watch values using useFormContext().watch())
-
-Cross-step state kept in React state (e.g., Step 4 reads age from Step 1)
-
-Assumptions made
-
-File upload stored client-side as File object; final submission will transform to base64 or multipart form-data for API.
-
-Auto-save stored in local React state only (per requirement).
-
-shadcn/ui components are optional; primitive UI components provided if shadcn is not initialized.
-
-Next steps (to complete all requirements)
-
-Implement Step 2–5 components following the same pattern.
-
-Implement manager search (controlled dropdown filtered from mockManagers).
-
-Implement conditional salary UI & validation (annual vs hourly).
-
-Implement skills selection with experience per skill.
-
-Implement guardian fields for users under 21.
-
-Implement remote preference logic and Manager Approved checkbox.
-
-Implement final review page (read-only) and confirmation checkbox.
 
