@@ -6,53 +6,106 @@ live site link https://employee-onboardings.netlify.app/
 
 
 
-# Employee Onboarding (Starter)
+Employee Onboarding (Starter)
 
-## Tech
-- Next.js (TypeScript)
-- React Hook Form
-- Zod
-- Tailwind CSS
-- (optional) shadcn/ui components
+Tech Stack
 
-## How to run
-1. `npm install`
-2. `npm run dev`
-3. Open `http://localhost:3000`
+Next.js (TypeScript)
 
-## What I implemented (starter)
-- Project skeleton with MultiStepForm orchestrator
-- Full **Step 1: Personal Info** implemented:
-  - fullName (≥2 words)
-  - email
-  - phone (+X-XXX-XXX-XXXX)
-  - dob (≥18 years)
-  - profile picture (JPG/PNG ≤ 2MB)
-- Validation with **Zod**, connected to React Hook Form.
-- Progress bar + step navigation.
-- Auto-save of form state **into React state** (not localStorage).
-- Unsaved changes warning using `beforeunload`.
-- Provided `lib/mockData.ts` for managers & skills (to use in Step 2/3).
+React Hook Form
 
-## How I planned complex logic
-- Use **per-step schemas** (Zod) and `zodResolver` per step to keep validation modular.
-- Use parent `MultiStepForm` to manage current step, accumulated state, and final data transformation.
-- Business logic (e.g., contract salary vs annual; manager filtering by department; start date weekend restriction for HR/Finance; guardian fields when age < 21) will be enforced:
-  - Through Zod refine checks for strict validation (dates/weekends).
-  - Through conditional rendering (watch values via `useFormContext().watch()`).
-  - Through cross-step state kept in React state (so step 4 can read age from step 1).
+Zod
 
-## Assumptions made
-- File upload is stored client-side as `File` object; final submission will transform to base64/ multipart form-data as needed by API.
-- Using local React state for autosave (the requirement said not to use localStorage).
-- shadcn/ui components are optional; I provided primitive UI components if you haven't initialized shadcn.
+Tailwind CSS
 
-## Next steps (to complete all requirements)
-- Implement Step 2..5 components following same pattern.
-- Implement manager search (controlled dropdown filtered from mockManagers).
-- Implement conditional salary UI & validation.
-- Implement skills selection with experience per skill.
-- Implement guardian fields when age < 21.
-- Implement remote preference logic and Manager Approved checkbox.
-- Implement final review page (read-only) and confirmation checkbox.
+(Optional) shadcn/ui components
+
+How to run
+
+npm install
+npm run dev
+
+
+Open http://localhost:3000
+ in your browser.
+
+What I implemented (starter)
+
+Project skeleton with MultiStepForm orchestrator.
+
+Step 1: Personal Info fully implemented:
+
+fullName (minimum 2 words)
+
+email
+
+phone (format: +X-XXX-XXX-XXXX)
+
+dob (≥18 years old)
+
+profile picture (JPG/PNG ≤ 2MB)
+
+Validation integrated with Zod, connected to React Hook Form.
+
+Progress bar + step navigation.
+
+Auto-save of form state into React state (not using localStorage).
+
+Unsaved changes warning using beforeunload.
+
+Provided lib/mockData.ts for managers & skills (to use in Step 2/3).
+
+How I planned complex logic
+
+Use per-step Zod schemas with zodResolver per step to keep validation modular.
+
+Use parent MultiStepForm to manage:
+
+Current step
+
+Accumulated form state
+
+Final data transformation for submission
+
+Business logic enforced:
+
+Contract vs Full-time salary validation
+
+Manager selection filtered by department
+
+Start date restrictions for HR/Finance on weekends
+
+Guardian fields for age < 21
+
+Implementation via:
+
+Zod .refine() for strict validation (dates, weekends, salary/hourly rules)
+
+Conditional rendering (watch values using useFormContext().watch())
+
+Cross-step state kept in React state (e.g., Step 4 reads age from Step 1)
+
+Assumptions made
+
+File upload stored client-side as File object; final submission will transform to base64 or multipart form-data for API.
+
+Auto-save stored in local React state only (per requirement).
+
+shadcn/ui components are optional; primitive UI components provided if shadcn is not initialized.
+
+Next steps (to complete all requirements)
+
+Implement Step 2–5 components following the same pattern.
+
+Implement manager search (controlled dropdown filtered from mockManagers).
+
+Implement conditional salary UI & validation (annual vs hourly).
+
+Implement skills selection with experience per skill.
+
+Implement guardian fields for users under 21.
+
+Implement remote preference logic and Manager Approved checkbox.
+
+Implement final review page (read-only) and confirmation checkbox.
 
